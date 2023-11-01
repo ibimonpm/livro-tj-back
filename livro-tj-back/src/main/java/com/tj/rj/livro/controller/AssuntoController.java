@@ -21,11 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.tj.rj.livro.domain.Assunto;
-import com.tj.rj.livro.domain.Livro;
 import com.tj.rj.livro.dto.AssuntoDto;
-import com.tj.rj.livro.dto.LivroDto;
 import com.tj.rj.livro.service.AssuntoService;
-import com.tj.rj.livro.service.LivroService;
 
 import jakarta.validation.Valid;
 
@@ -49,8 +46,8 @@ public class AssuntoController {
 	
 	@GetMapping(value = "/livros/{idLivro}")	
 	public ResponseEntity<List<Assunto>> findAllPorAssunto(@Valid @PathVariable Long idLivro){
-		List<Assunto> listaDto = assuntoService.findAllPorLivro(idLivro);		
-		return ResponseEntity.ok().body(listaDto); 
+		List<Assunto> lista = assuntoService.findAllPorLivro(idLivro);		
+		return ResponseEntity.ok().body(lista); 
 	}
 	
 	@PostMapping

@@ -5,12 +5,15 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.tj.rj.livro.domain.Autor;
 import com.tj.rj.livro.dto.AutorDto;
 import com.tj.rj.livro.exeptions.ObjectNotFoundException;
 import com.tj.rj.livro.repositories.AutorRepository;
+
+import jakarta.validation.Valid;
 
 @Service
 public class AutorService {
@@ -28,6 +31,10 @@ public class AutorService {
 		return autorRepository.findAll();
 	}
 
+	public List<Autor> findAllPorLivro(@Param(value = "idLivro") @Valid Long idLivro) {
+		return autorRepository.findAllByLivro(idLivro);
+	}
+	
 	public Autor salvar(Autor autor) {
 		autor.setId(null);
 		return autorRepository.save(autor);

@@ -20,58 +20,58 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.tj.rj.livro.domain.Livro;
-import com.tj.rj.livro.dto.LivroDto;
-import com.tj.rj.livro.service.LivroService;
+import com.tj.rj.livro.domain.Autor;
+import com.tj.rj.livro.dto.AutorDto;
+import com.tj.rj.livro.service.AutorService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/livros")
-public class LivroController {
+@RequestMapping("/autores")
+public class AutorController {
 	@Autowired
-	private LivroService livroService;
+	private AutorService autorService;
 	
 	@GetMapping
-	public ResponseEntity<List<Livro>> findAll(){
-		List<Livro>  obj = livroService.findAll();
+	public ResponseEntity<List<Autor>> findAll(){
+		List<Autor>  obj = autorService.findAll();
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Livro> findById(@PathVariable Long id){
-		Livro obj = livroService.findById(id);
+	public ResponseEntity<Autor> findById(@Valid @PathVariable Long id){
+		Autor obj = autorService.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@GetMapping(value = "/assunto/{idAssunto}")	
-	public ResponseEntity<List<Livro>> findAllPorAssunto(@Valid @PathVariable Long idAssunto){
-		List<Livro> lista = livroService.findAll(idAssunto);		
+	@GetMapping(value = "/livros/{idLivro}")	
+	public ResponseEntity<List<Autor>> findAllPorLivro(@Valid @PathVariable Long idLivro){
+		List<Autor> lista = autorService.findAllPorLivro(idLivro);		
 		return ResponseEntity.ok().body(lista); 
 	}
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public ResponseEntity<Livro> adicionar(@Valid @RequestBody Livro livro) {
+	public ResponseEntity<Autor> adicionar(@Valid @RequestBody Autor autor) {
 		
-		livro = livroService.salvar(livro);
+		autor = autorService.salvar(autor);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath()
-				.path("/livros/{id}")
-				.buildAndExpand(livro.getId()).toUri();
+				.path("/{id}")
+				.buildAndExpand(autor.getId()).toUri();
 		
 		return ResponseEntity.created(uri).build();
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Livro> update(@PathVariable Long  id, @Valid @RequestBody LivroDto dto){
-		Livro novo = livroService.update(id, dto);
+	public ResponseEntity<Autor> update(@PathVariable Long  id, @Valid @RequestBody AutorDto dto){
+		Autor novo = autorService.update(id, dto);
 		return ResponseEntity.ok().body(novo);
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Long id){
-		livroService.delete(id);
+	public ResponseEntity<Void> delete(@Valid @PathVariable Long id){
+		autorService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	

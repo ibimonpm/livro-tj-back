@@ -2,7 +2,6 @@ package com.tj.rj.livro.domain;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -19,8 +18,6 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -49,6 +46,7 @@ public class Assunto implements Serializable{
 	@NotNull
     private String descricao;	
 	
+    @JsonIgnore
 	@OneToMany(mappedBy = "assunto")
     private List<Livro> livros;
 }

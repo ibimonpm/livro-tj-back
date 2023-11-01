@@ -7,11 +7,7 @@ import org.hibernate.validator.constraints.Length;
 import com.tj.rj.livro.domain.Autor;
 
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 @Data
 public class AutorDto {

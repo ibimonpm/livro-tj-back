@@ -71,15 +71,14 @@ public class Livro implements Serializable{
 	@JsonProperty
     private Double mediaPreco;
     
-    @JsonIgnore
     @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinTable(name = "livro_autor",
-            joinColumns = @JoinColumn(name = "livro_id"),
-            inverseJoinColumns = @JoinColumn(name = "autor_id"))
+            joinColumns = @JoinColumn(name = "livro_codi"),
+            inverseJoinColumns = @JoinColumn(name = "autor_codau"))
     private Set<Autor> autores;
     
-    @JsonIgnore
-    @ManyToOne
+
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "assunto_id")
     private Assunto assunto;
 }
