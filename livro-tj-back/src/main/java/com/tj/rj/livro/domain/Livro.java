@@ -79,6 +79,8 @@ public class Livro implements Serializable{
     
 
     @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
-    @JoinColumn(name = "assunto_id")
+    @JoinTable(name = "livro_assunto",
+            joinColumns = @JoinColumn(name = "livro_codi"),
+            inverseJoinColumns = @JoinColumn(name = "assunto_codas"))
     private Assunto assunto;
 }
