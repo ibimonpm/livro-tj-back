@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/livros")
+@CrossOrigin(origins = "http://localhost:4200") 
 public class LivroController {
 	@Autowired
 	private LivroService livroService;
@@ -40,7 +42,7 @@ public class LivroController {
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Livro> findById(@PathVariable Long id){
-		Livro obj = livroService.findById(id);
+		Livro obj = livroService.findById(id);		
 		return ResponseEntity.ok().body(obj);
 	}
 	

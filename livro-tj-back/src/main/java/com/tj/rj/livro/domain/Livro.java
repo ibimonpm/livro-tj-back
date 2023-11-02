@@ -24,6 +24,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -70,6 +71,10 @@ public class Livro implements Serializable{
 	
 	@JsonProperty
     private Double mediaPreco;
+	
+	@JsonProperty
+	@Transient
+    private String mediaPrecoStr;
     
     @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinTable(name = "livro_autor",

@@ -32,12 +32,26 @@ public class LivroService {
 
 	public Livro findById(Long id) {
 		Optional<Livro> obj = this.livroRepository.findById(id);
+		
+		if(obj.get().getMediaPreco() != null) 
+		{			
+			String valorString = String.format("%.2f", obj.get().getMediaPreco()).replace(',', '.');
+			obj.get().setMediaPrecoStr(valorString);
+		}
+		
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + " Tipo:" + Livro.class.getName()));
 	}
 
 	public List<Livro> findAll() {
-		return livroRepository.findAll();
+		List<Livro> lista = livroRepository.findAll();
+		
+		lista.forEach(item -> {
+            String precoFormatado = String.format("%.2f", item.getMediaPreco()); 
+            item.setMediaPrecoStr(precoFormatado); 
+        });
+		
+		return lista;		
 	}
 
 	public List<Livro> findAll(Long idAssunto) {
@@ -60,6 +74,9 @@ public class LivroService {
 	}
 	
 	public Livro salvar(Livro entidade) {
+		if(!entidade.getMediaPrecoStr().isEmpty()) {			
+			entidade.setMediaPreco(Double.parseDouble(entidade.getMediaPrecoStr()));
+		}
 		return livroRepository.save(entidade);
 	}
 
@@ -74,6 +91,12 @@ public class LivroService {
 		livro.setEdicao(dto.getEdicao());
 		livro.setEditora(dto.getEditora());
 		livro.setMediaPreco(dto.getMediaPreco());
+		
+		if(livro.getMediaPrecoStr() != null && !livro.getMediaPrecoStr().isEmpty()) {			
+			livro.setMediaPreco(Double.parseDouble(livro.getMediaPrecoStr()));
+		}else {
+			livro.setMediaPreco(Double.MIN_VALUE);
+		}
 		
 		if(dto.getAssunto() != null){
 			livro.setAssunto(new Assunto(dto.getAssunto().getId(), dto.getAssunto().getDescricao(), null));

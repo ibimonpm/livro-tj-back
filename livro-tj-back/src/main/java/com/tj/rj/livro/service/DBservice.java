@@ -34,7 +34,7 @@ public class DBservice {
 		Set<Autor> autores = new HashSet<>();
 		autores.add(a);
 		
-		Livro l = new Livro(null, "Clean code", "Alta Books", 1, "2021", 200.10 , autores, c);
+		Livro l = new Livro(null, "Clean code", "Alta Books", 1, "2021", 200.10 , "", autores, c);
 		
 		c.getLivros().addAll(Arrays.asList(l));
 		
