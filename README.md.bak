@@ -1,6 +1,22 @@
 # livro-tj-back
 Back End Tj Livro
 
+# Opção de Trabalho BackEnd
+
+* Optei por trabalhar com SpringBoot na sua vesão 3.1.2, por ela já esta consolidada e menos conflituosa.
+* Para controle de Dependências usei o Maven “apache-maven-3.9.4”, por esta familiarizado com o mesmo e ser uma das opções da IDE utilizada.
+*A IDE utilizada foi o
+	**Spring Tool Suite 4 
+	**Version: 4.20.0.RELEASE
+	**Build Id: 202309081654
+	**Revision: 53f375c563505640d3065501ac290f0e3663359c
+
+*Utilizei essa IDE por ser totalmente integrada com o ecossistema do Spring é fácil o manejo das dependências e integração com o Java.
+
+* Utilizei a versão 17(compilação) por à mesma já está integrada à IDE e foi sugerida pela mesma..
+* Por praticidade e boa integração com o Spring usei o Horm JPA com o Jakarta (spring-boot-starter-data-jpa), à integração da persistência se torna mais fácil e produtiva.
+
+
 # Banco de Dados
 
 * O banco de dados utilizado foi o PostGreSQL
@@ -20,8 +36,22 @@ pgadmin4@pgadmin.org
 NW.js Version
 0.55.0
 
+# Criação do Banco de Dados
+-- Database: tjdb
+
+-- DROP DATABASE IF EXISTS tjdb;
+
+CREATE DATABASE tjdb
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Portuguese_Brazil.1252'
+    LC_CTYPE = 'Portuguese_Brazil.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
 
 # SQL criação da view
+
 
 CREATE OR REPLACE VIEW livro_autor_assunto_view AS
 SELECT

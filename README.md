@@ -6,12 +6,12 @@ Back End Tj Livro
 * Optei por trabalhar com SpringBoot na sua vesão 3.1.2, por ela já esta consolidada e menos conflituosa.
 * Para controle de Dependências usei o Maven “apache-maven-3.9.4”, por esta familiarizado com o mesmo e ser uma das opções da IDE utilizada.
 *A IDE utilizada foi o
-	**Spring Tool Suite 4 
-	**Version: 4.20.0.RELEASE
-	**Build Id: 202309081654
-	**Revision: 53f375c563505640d3065501ac290f0e3663359c
+	* _Spring Tool Suite 4 
+	* _Version: 4.20.0.RELEASE
+	* _Build Id: 202309081654
+	* _Revision: 53f375c563505640d3065501ac290f0e3663359c
 
-*Utilizei essa IDE por ser totalmente integrada com o ecossistema do Spring é fácil o manejo das dependências e integração com o Java.
+* Utilizei essa IDE por ser totalmente integrada com o ecossistema do Spring é fácil o manejo das dependências e integração com o Java.
 
 * Utilizei a versão 17(compilação) por à mesma já está integrada à IDE e foi sugerida pela mesma..
 * Por praticidade e boa integração com o Spring usei o Horm JPA com o Jakarta (spring-boot-starter-data-jpa), à integração da persistência se torna mais fácil e produtiva.
